@@ -22,10 +22,11 @@ mkdir -p $dkim_rec_path
 /usr/local/psa/bin/domain_pref --update ${NEW_DOMAIN_NAME} -sign_outgoing_mail true
 
 ## recreate key
-openssl rsa -in /etc/domainkeys/${NEW_DOMAIN_NAME}/default -pubout -out public.key
+openssl rsa -in /etc/domainkeys/${NEW_DOMAIN_NAME}/default -pubout -out $tmp_path/public_${NEW_DOMAIN_NAME}.key
 
 ## crop first and last line of keyfile
-sed '1d;$d' public.key > $tmp_path/$tmp_prefix${NEW_DOMAIN_NAME}$tmp_fe
+sed '1d;$d' $tmp_path/public_${NEW_DOMAIN_NAME}.key > $tmp_path/$tmp_prefix${NEW_DOMAIN_NAME}$tmp_fe
+rm $tmp_path/public_${NEW_DOMAIN_NAME}.key
 ## remove newlines from the key
 dkim_key=$(tr -d '\n' < $tmp_path/$tmp_prefix${NEW_DOMAIN_NAME}$tmp_fe)
 rm $tmp_path/$tmp_prefix${NEW_DOMAIN_NAME}$tmp_fe
