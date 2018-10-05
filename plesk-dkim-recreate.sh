@@ -14,6 +14,9 @@ dkim_rec_prefix=dkim_key_
 ##dkim file ending
 dkim_rec_fe=.txt
 
+##go to sleep, because plesk is not so fast...
+sleep 15
+
 ##find customer www-root
 customer_root=$(/usr/local/psa/bin/domain --info ${NEW_DOMAIN_NAME} | grep "WWW-Root" | cut -d/ -f2-5)
 
