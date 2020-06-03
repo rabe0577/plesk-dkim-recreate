@@ -38,4 +38,4 @@ dkim_key=$(tr -d '\n' < $tmp_path/$tmp_prefix${NEW_DOMAIN_NAME}$tmp_fe)
 rm $tmp_path/$tmp_prefix${NEW_DOMAIN_NAME}$tmp_fe
 
 ## generate domainkey record and store to text file
-echo "default._domainkey.${NEW_DOMAIN_NAME} IN TXT \"v=DKIM1; k=rsa; p=$dkim_key" > /$customer_root$dkim_rec_path/$dkim_rec_prefix${NEW_DOMAIN_NAME}$dkim_rec_fe
+echo "default._domainkey.${NEW_DOMAIN_NAME} IN TXT \"v=DKIM1; k=rsa; p=$dkim_key\"" > /$customer_root$dkim_rec_path/$dkim_rec_prefix${NEW_DOMAIN_NAME}$dkim_rec_fe
